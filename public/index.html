@@ -1,0 +1,49 @@
+---
+
+### public/index.html (login)
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZipHub - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="smooth">
+  <main class="centered">
+    <div class="card login-card">
+      <img src="/public/logos/logo1.svg" class="brand" alt="ZipHub">
+      <h1>ZipHub</h1>
+      <p class="lead">Upload and share ZIP projects — all content behind login.</p>
+      <form id="loginForm">
+        <input name="username" placeholder="Username" required />
+        <input name="password" placeholder="Password" type="password" required />
+        <button class="logo-button"><img src="/public/logos/logo2.svg" alt="login">Sign in</button>
+      </form>
+      <p class="muted">Default admin: <strong>admin</strong> / <strong>JamesTech123</strong></p>
+    </div>
+    <p class="foot">Made with ❤️ by JamesTech — Project Store</p>
+  </main>
+  <script src="/public/js/api.js"></script>
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(loginForm);
+      const body = { username: fd.get('username'), password: fd.get('password') };
+      const res = await apiPost('/api/login', body);
+      if (res && res.ok) {
+        // after login, go to dashboard
+        location.href = '/public/dashboard.html';
+      } else {
+        alert('Login failed');
+      }
+    });
+  </script>
+</body>
+</html>

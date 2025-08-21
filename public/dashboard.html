@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZipHub - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="smooth">
+  <header class="topbar">
+    <div class="brand-row">
+      <!-- Primary badge logo -->
+      <img src="/public/logos/logo1.svg" class="mini-logo" alt="ZipHub">
+      <h1>ZipHub</h1>
+    </div>
+    <div class="actions">
+      <!-- Logout uses the sign-in/logout icon (logo2) -->
+      <button id="logoutBtn" class="logo-button"><img src="/public/logos/logo2.svg" alt="Logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="sidebar">
+      <div class="logos-list">
+        <!-- Home / Badge -->
+        <button class="logo-btn" id="homeBtn"><img src="/public/logos/logo1.svg" alt="Home"><span>Home</span></button>
+
+        <!-- Upload (cloud arrow) -->
+        <button class="logo-btn" id="openUploadBtn"><img src="/public/logos/logo3.svg" alt="Upload"><span>Upload ZIP</span></button>
+
+        <!-- Refresh / sync -->
+        <button class="logo-btn" id="refreshBtn"><img src="/public/logos/logo4.svg" alt="Refresh"><span>Refresh</span></button>
+
+        <!-- Admin / shield -->
+        <button class="logo-btn" id="adminPanelBtn"><img src="/public/logos/logo5.svg" alt="Admin"><span>Admin</span></button>
+
+        <!-- My Zips / folder -->
+        <button class="logo-btn" id="myZipsBtn"><img src="/public/logos/logo6.svg" alt="My Zips"><span>My Zips</span></button>
+
+        <!-- Stats / chart -->
+        <button class="logo-btn" id="statsBtn"><img src="/public/logos/logo7.svg" alt="Stats"><span>Stats</span></button>
+
+        <!-- Settings / gear -->
+        <button class="logo-btn" id="settingsBtn"><img src="/public/logos/logo8.svg" alt="Settings"><span>Settings</span></button>
+
+        <!-- Help / docs -->
+        <button class="logo-btn" id="helpBtn"><img src="/public/logos/logo9.svg" alt="Help"><span>Help</span></button>
+
+        <!-- More / details -->
+        <button class="logo-btn" id="moreBtn"><img src="/public/logos/logo10.svg" alt="More"><span>More</span></button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="panel">
+        <h2>Uploads</h2>
+        <p class="muted">Only .zip files accepted. Add full details when uploading.</p>
+
+        <!-- Upload area (hidden by default) -->
+        <div id="uploadArea" class="upload-area hidden">
+          <form id="uploadForm">
+            <label>ZIP file <input type="file" name="zipfile" accept=".zip" required></label>
+            <input name="creatorName" placeholder="Creator name (required)" required />
+            <input name="channel" placeholder="Channel (optional)" />
+            <input name="repo" placeholder="Repo (optional)" />
+            <textarea name="moreDetails" placeholder="More details (optional)"></textarea>
+            <textarea name="description" placeholder="Describe your ZIP (required)" required></textarea>
+            <!-- Upload button uses the upload/cloud logo (logo3) -->
+            <button type="submit" class="logo-button"><img src="/public/logos/logo3.svg" alt="Upload">Upload ZIP</button>
+          </form>
+        </div>
+
+        <!-- List of uploaded zips -->
+        <div id="zipsList"></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="zipCardTpl">
+    <div class="zip-card">
+      <div class="zip-left">
+        <!-- Thumbnail uses primary badge by default; can be changed dynamically -->
+        <img class="zip-thumb" src="/public/logos/logo6.svg" alt="Zip Thumbnail">
+      </div>
+      <div class="zip-main">
+        <h3 class="z-title"></h3>
+        <p class="z-meta"></p>
+        <p class="z-desc"></p>
+        <div class="z-actions">
+          <a class="download link">Download</a>
+          <button class="delete link danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="/public/js/api.js"></script>
+  <script src="/public/js/app.js"></script>
+</body>
+</html>
